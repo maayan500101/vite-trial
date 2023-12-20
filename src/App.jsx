@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+function App(){
+  const iframeUrl = import.meta.env.VITE_IFRAME_URL  
 
-function App() {
-  const [count, setCount] = useState(0)
+  const createToken = async (payload, secretKey) => {
+    const header = {
+      alg: 'HS256',
+      typ: 'JWT',
+    };
+  
+    const encodedHeader = btoa(JSON.stringify(header));
+    const encodedPayload = btoa(JSON.stringify(payload));
+  
+    const encodedToken = `${encodedHeader}.${encodedPayload}`;
+  
+    const secretKeyBuffer = new TextEncoder().encode(secretKey);
+    const cryptoKeyPromise = window.crypto.subtle.importKey(
+      'raw',
+      secretKeyBuffer,
+      { name: 'HMAC', hash: { name: 'SHA-256' } },
+      false,
+      ['sign']
+    );
+  
+  
+    try {
+      const cryptoKey = await cryptoKeyPromise;
+      const signatureBuffer = await window.crypto.subtle.sign(
+        { name: 'HMAC', hash: { name: 'SHA-256' } },
+        cryptoKey,
+        new TextEncoder().encode(encodedToken)
+      );
+  
+      const signature = String.fromCharCode.apply(null, new Uint8Array(signatureBuffer));
+      const encodedSignature = btoa(signature);
+  
+      return `${encodedToken}.${encodedSignature}`;
+    } catch (error) {
+      console.error('Error signing the token:', error);
+      throw error; 
+    }
+  };
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+  const loadFunction = async() => {
+      const secret =  import.meta.env.VITE_SECRET;
+      const currentHourDate = `${(new Date()).toLocaleString('he').slice(0,-5)}00`.replace(/[.]/g, '-').replace(/[,]/g, '');
+      const srcUrl = "http://localhost:3000";
+      const token =  await createToken({
+        "cityId": 107,
+        "journal": "allHospitals",
+        "isAdmin": true
+      } ,secret + currentHourDate);
+
+      document.querySelector("iframe").contentWindow.postMessage(token , srcUrl);
+  }
+   
+  return  <iframe
+  style={{width:"70vw", height: "90vh"}}
+  id="target_website"
+  src={iframeUrl}
+  onLoad={loadFunction}
+>
+</iframe>
 }
 
 export default App
