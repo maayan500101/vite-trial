@@ -6,4 +6,3 @@ export default defineConfig({
   base:"/vite-trial/",
   plugins: [react()],
 })
-``
