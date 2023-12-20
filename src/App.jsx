@@ -53,6 +53,8 @@ function App(){
 
       document.querySelector("iframe").contentWindow.postMessage(token , srcUrl);
   }
+
+  console.log(iframeUrl);
    
   return  <iframe
   style={{width:"70vw", height: "90vh"}}
