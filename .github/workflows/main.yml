@@ -48,8 +48,4 @@ jobs:
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        run: npm run dev
-
-    env:
-          VITE_IFRAME_URL: ${{ secrets.VITE_IFRAME_URL }},
-          VITE_SECRET: ${{ secrets.VITE_SECRET }}
+        uses: actions/deploy-pages@v2
