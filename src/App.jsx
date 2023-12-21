@@ -43,7 +43,7 @@ function App(){
 
   const loadFunction = async() => {
       const secret =  import.meta.env.VITE_SECRET;
-      const currentHourDate = `${(new Date()).toLocaleString('he').slice(0,-5)}00`.replace(/[.]/g, '-').replace(/[,]/g, '');
+      const currentHourDate = new Date().toISOString().replace(/[-:]/g, '').split('.')[0].replace('T', '');
       const srcUrl = "http://localhost:3000";
       const token =  await createToken({
         "cityId": 107,
