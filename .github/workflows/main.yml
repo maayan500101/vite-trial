@@ -24,9 +24,9 @@ jobs:
       - name: Build Vite project
         run: npm run build
 
-        - name: Debug Working Directory
-  run: |
-    pwd
+      - name: Debug Working Directory
+        run: |
+            pwd
 
       - name: Deploy to GitHub Pages
         run: |
