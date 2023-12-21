@@ -52,6 +52,8 @@ function App(){
         "isAdmin": true
       } ,secret + currentHourDate);
 
+      console.log(secret+token);
+
       document.querySelector("iframe").contentWindow.postMessage(token , iframeUrl);
   }
    
