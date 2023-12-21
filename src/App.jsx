@@ -45,7 +45,7 @@ function App() {
     }
   };
 
-  console.log(import.meta.ENV);
+  console.log(import.meta.env);
 
   const loadFunction = async () => {
     const secret = import.meta.env.VITE_SECRET;
