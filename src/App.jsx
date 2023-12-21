@@ -1,4 +1,5 @@
 function App(){
+  console.log(import.meta.env)
   const iframeUrl = import.meta.env.VITE_IFRAME_URL  
 
   const createToken = async (payload, secretKey) => {
