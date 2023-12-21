@@ -45,7 +45,7 @@ function App(){
   const loadFunction = async() => {
       const secret =  import.meta.env.VITE_SECRET;
       console.log("joj");
-      const currentHourDate = `${(new Date().toISOString().split("T")[0]).replaceAll("-", "")}T${(new Date(new Date().setHours(1))).toTimeString().split(":")[0]}`;
+      const currentHourDate = `${(new Date().toISOString().split("T")[0]).replaceAll("-", "")}T${(new Date()).toTimeString().split(":")[0]}`;
       const token =  await createToken({
         "cityId": 107,
         "journal": "allHospitals",
