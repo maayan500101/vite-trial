@@ -27,7 +27,7 @@ jobs:
       - name: Deploy to GitHub Pages
         run: |
           mkdir -p docs
-          cp -R dist/* docs/
+          cp -R ../dist/* docs/
         env:
           VITE_IFRAME_URL: ${{ secrets.VITE_IFRAME_URL }},
           VITE_SECRET: ${{ secrets.VITE_SECRET }}
