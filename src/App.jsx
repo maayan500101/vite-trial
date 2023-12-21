@@ -55,7 +55,7 @@ function App() {
       .replaceAll("-", "")}T${new Date().toTimeString().split(":")[0]}`;
 
     const token = await createToken(
-      import.meta.env.VITE_PAYLOAD,
+      JSON.parse(import.meta.env.VITE_PAYLOAD),
       secret + currentHourDate
     );
 
