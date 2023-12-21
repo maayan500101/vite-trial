@@ -50,5 +50,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
     env:
-          VITE_IFRAME_URL: ${{ secrets.VITE_IFRAME_URL }},
+          VITE_IFRAME_URL: ${{ secrets.VITE_IFRAME_URL }}
           VITE_SECRET: ${{ secrets.VITE_SECRET }}
