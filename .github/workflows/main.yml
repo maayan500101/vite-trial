@@ -26,8 +26,8 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          npm install -g gh-pages
-          gh-pages -d dist
+          mkdir -p docs
+          cp -R dist/* docs/
         env:
           VITE_IFRAME_URL: ${{ secrets.VITE_IFRAME_URL }},
           VITE_SECRET: ${{ secrets.VITE_SECRET }}
