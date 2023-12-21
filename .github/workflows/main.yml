@@ -48,7 +48,7 @@ jobs:
           path: './dist'
       - name: Deploy to GitHub Pages
         run: |
-          npm install -g gh-pages
+          npm install gh-pages
           gh-pages -d dist
         id: deployment
     env:
