@@ -26,9 +26,9 @@ jobs:
 
       - name: Debugging
         run: |
-          ls
-          ls -la
-          ls -la dist
+          ls  -r
+          # ls -la
+          # ls -la dist
 
       - name: Deploy to GitHub Pages
         run: |
