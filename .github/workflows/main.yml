@@ -35,6 +35,10 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+      - name: Configure Git
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
       - name: Install dependencies
         run: npm install
       - name: Build
