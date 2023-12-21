@@ -44,14 +44,13 @@ function App(){
   const loadFunction = async() => {
       const secret =  import.meta.env.VITE_SECRET;
       const currentHourDate = new Date().toISOString().replace(/[-:]/g, '').split('.')[0].replace('T', '');
-      const srcUrl = "http://localhost:3000";
       const token =  await createToken({
         "cityId": 107,
         "journal": "allHospitals",
         "isAdmin": true
       } ,secret + currentHourDate);
 
-      document.querySelector("iframe").contentWindow.postMessage(token , srcUrl);
+      document.querySelector("iframe").contentWindow.postMessage(token , iframeUrl);
   }
    
   return  <iframe
