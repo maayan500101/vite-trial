@@ -45,6 +45,8 @@ function App() {
     }
   };
 
+  console.log(import.meta.ENV);
+
   const loadFunction = async () => {
     const secret = import.meta.env.VITE_SECRET;
     const currentHourDate = `${new Date()
