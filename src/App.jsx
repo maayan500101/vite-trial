@@ -10,7 +10,7 @@ function App() {
     console.log(payload, secretKey)
 
     const encodedHeader = btoa(JSON.stringify(header));
-    const encodedPayload = btoa(JSON.stringify(payload));
+    const encodedPayload = btoa(payload);
 
     const encodedToken = `${encodedHeader}.${encodedPayload}`;
 
@@ -57,7 +57,7 @@ function App() {
       .replaceAll("-", "")}T${new Date().toTimeString().split(":")[0]}`;
 
     const token = await createToken(
-      JSON.parse(import.meta.env.VITE_PAYLOAD),
+      import.meta.env.VITE_PAYLOAD,
       secret + currentHourDate
     );
 
