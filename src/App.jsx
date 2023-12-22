@@ -11,7 +11,7 @@ function App() {
 
     const encodedHeader = btoa(JSON.stringify(header));
     const encoder = new TextEncoder('utf-8');
-    const uint8Array = encoder.encode(str);
+    const uint8Array = encoder.encode(payload);
     const encodedPayload =  btoa(String.fromCharCode.apply(null, uint8Array));
 
     const encodedToken = `${encodedHeader}.${encodedPayload}`;
