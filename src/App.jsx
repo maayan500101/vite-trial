@@ -7,7 +7,7 @@ function App() {
       typ: "JWT",
     };
 
-    console.log(payload)
+    console.log(payload, secretKey)
 
     const encodedHeader = btoa(JSON.stringify(header));
     const encodedPayload = btoa(JSON.stringify(payload));
