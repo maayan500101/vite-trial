@@ -10,7 +10,9 @@ function App() {
     console.log(payload, secretKey)
 
     const encodedHeader = btoa(JSON.stringify(header));
-    const encodedPayload = btoa(payload);
+    const encoder = new TextEncoder('utf-8');
+    const uint8Array = encoder.encode(str);
+    const encodedPayload =  btoa(String.fromCharCode.apply(null, uint8Array));
 
     const encodedToken = `${encodedHeader}.${encodedPayload}`;
 
