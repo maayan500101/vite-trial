@@ -64,7 +64,7 @@ function App() {
       secret + currentHourDate
     );
 
-    // console.log(token, secret + currentHourDate);
+    console.log(token, secret + currentHourDate);
 
     document
       .querySelector("iframe")
