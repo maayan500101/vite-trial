@@ -73,7 +73,7 @@ function App() {
 
   return (
     <iframe
-      style={{ width: "81vw", height: "91vh" }}
+      style={{ width: "81vw", height: "90vh" }}
       id="target_website"
       src={iframeUrl}
       onLoad={loadFunction}
